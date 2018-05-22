@@ -69,7 +69,7 @@ class Money
           path: '/api/historical',
           query: {
             access_key: CringleMoney.configuration.currencylayer_api_key,
-            source: from_currency,
+            source: from_currency.to_s,
             date: date.to_s,
             currencies: to_currencies.join(',')
           }.map { |k,v| "#{k}=#{v}" }.join('&')
