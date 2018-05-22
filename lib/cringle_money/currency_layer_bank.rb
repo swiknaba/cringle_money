@@ -31,7 +31,7 @@ class Money
         # Fetch missing rates to redis via one API call to CL
         cache_rates(from_currency, rates_to_fetch, date)
         # Fetch missing rates from redis
-        rates_to_fetch.each { |c| rates[c] = get_cached_rate(from_currency, c, date) }
+        rates_to_fetch.each { |c| rates[c] = get_cached_rate(from_currency, c, date) } unless rates_to_fetch.empty?
         rates
       end
 
