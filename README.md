@@ -64,4 +64,8 @@ which will return an array of CringleMoney objects (= Money object with an `exch
 
 `=> [#<CringleMoney fractional:1177 currency:USD>, #<CringleMoney fractional:1564 currency:AUD>]`
 
-(CringleMoney.fractional returns the value given in the currency's smallest unit, which is cents for EUR)
+Note: CringleMoney.fractional returns the value given in the currency's smallest unit, which is cents for EUR.
+You can easily format it using Money's build in methods:
+`money.fractional.to_f / money.currency.subunit_to_unit`
+
+will result in `11.77` USD
