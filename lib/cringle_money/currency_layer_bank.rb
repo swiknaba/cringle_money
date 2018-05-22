@@ -29,9 +29,9 @@ class Money
         rates = to_currencies.map { |c| [c.iso_code, get_cached_rate(from_currency, c, date)] }.to_h
         rates_to_fetch = rates.select { |_, rate| rate.nil? || rate.to_f.zero? }.keys
         # Fetch missing rates to redis via one API call to CL
-        cache_rates(from_currency, rates_to_fetch, date)
+        cache_rates(from_currency, rates_to_fetch, date) unless rates_to_fetch.empty?
         # Fetch missing rates from redis
-        rates_to_fetch.each { |c| rates[c] = get_cached_rate(from_currency, c, date) } unless rates_to_fetch.empty?
+        rates_to_fetch.each { |c| rates[c] = get_cached_rate(from_currency, c, date) }
         rates
       end
 
